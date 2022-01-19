@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- links to google fonts roboto condensced and Lora -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Oswald:wght@200;400;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;1,100;1,200;1,300&family=Roboto+Condensed:ital,wght@0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <link rel="stylesheet" href="assets/landingStyle.css">
+    <link rel="stylesheet" href="assets/parsley.css">
+    <title>Is it a Movie?</title>
+</head>
+<body>
+<!-- <body class="bg-sky-500/75"> -->
+    <!-- <div id="main-container"> -->
+        <div id="main-container">
+            <div id="hide-container" data-display="hide">
+                <div id="logo-container">
+                    <img id="logo" src="assets/images/Logo.png">
+                </div>
+                <div id="search-tools-container">
+                    <form id="search-form" data-parsley-validate="">
+                        <input id="search-input" required="" type="text" placeholder="Enter book title..."> 
+                    </form>
+                    <button id="search-button" value="validate" data-button="search" type="submit"><img id="mag-glass" src="assets/images/magGLass.png"></button>
+                    <!-- TailwindCSS: button class="bg-blue-500 hover: bg-blue-700 text-white font-bold py-2 px-4 rounded"-->
+                </div>
+                <!-- <ul id="search-history-list" type="text" class="list-group"></ul> -->
+            </div>
+        </div>
+        <div id="post-landing">
+        </div>
+
+    <!-- </div> -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="assets/parsley.min.js"></script>
+    <script src="assets/scriptAlternate.js"></script>
+</body>
+</html>
+
