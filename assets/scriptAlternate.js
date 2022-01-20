@@ -1,4 +1,4 @@
-var movieApiKey = "k_wvl4y5ot";
+var movieApiKey = "k_q049lni3";
 var mainContainer = $("#main-container");
 var titleListFlex = $(`<div>`).attr("id", "title-list-container-flex");
 var bookCover;
@@ -9,12 +9,15 @@ var bookRating;
 var movieTitle;
 var poster;
 var movieRating;
+var searchedBookTitles;
 var searchHistoryList = [];
+
 
 $("#search-form").parsley();
 // Prevent default for search form
 var searchEventHandler = function (event) {
     event.preventDefault();
+    // $("#search-history-list").empty();
     $("#search-input").parsley().validate();
     var userInput = $("#search-input").val()
     if (userInput) {
@@ -59,27 +62,12 @@ var searchEventHandler2 = function (event) {
 
 
 
-// ELLIOT CODE - search history function to incorporate local storage
-function searchHistory(userInput) {
-    // Push user input history (i.e. book title searched) into a list and append to html <li> tag with id="searchHistory"
-    if (!searchHistoryList.includes(userInput)) {
-        searchHistoryList.push(userInput);
-        var searchedBookTitles = $(`
-            <li class="list-group-item">${userInput}</li>
-            `);
-        $("#search-history-list").append(searchedBookTitles);
-    };
-
-    // Save user input (book title) to local storage
-    localStorage.setItem("bookTitleInput", JSON.stringify(searchHistoryList));
-    console.log(searchHistoryList);
-}
 
 
 
 // Make api requests
 function apiQuery() {
-
+    $("#search-history-list").attr("class", "hide");
     var userInput = $("#search-input").val().trim();
 
     // User validation
@@ -146,8 +134,7 @@ function apiQuery() {
                 //  titleListFlex.attr("class", "hide");
 
         })
-       
-        
+
 };
 
 
@@ -234,7 +221,7 @@ function apiQuery2() {
 // MOVIE CHECKKKKKK
 
 // ==================================  set up IMDb API for movie rating API 
-IMDbAPIKey = "k_wvl4y5ot"
+IMDbAPIKey = "k_kjtdo6f2"
 function searchMovie(inputMovie){
    
     // var inputMovie = $("#movie-input").val().trim();
@@ -243,11 +230,11 @@ function searchMovie(inputMovie){
     fetch(requestIMDbUrl)
         .then(function(searchMovieResponse){
             if (searchMovieResponse.status === 200){
-                //movieRating = movieRatingResponse.status;
+                // movieRating = movieRatingResponse.status;
             }
             return searchMovieResponse.json();
         }).then (function(searchMovieData){
-            // console.log("searchMovieData", searchMovieData);
+            console.log("searchMovieData", searchMovieData);
 
             // var searchMovieTitle = searchMovieData.expression;
             var movieTitleId = searchMovieData.results[0].id;
@@ -274,7 +261,7 @@ function getRatingApi(movieTitleId){
 
             // make consistent with the book rating 5-star scaling unit 
             movieRating = ((movieRatingData.imDb)/2);
-            console.log("this is movie rating" + movieRating);
+            console.log("this is movie rating: " + movieRating);
         });
 }
 
@@ -339,11 +326,11 @@ function getPosterApi(movieTitleId){
                 compareContainerTwo.append(compareTwoInner);
                 movieTitleDisplay.text(movieTitle);
                 movieYearDisplay.text(movieYear);
-                movieRatingDisplay.text(movieRating);
+                movieRatingDisplay.text("Average Rating:  " + movieRating);
                 whereToWatch.text("Where to Watch");
                 compareTwoInner.append(movieTitleDisplay);
                 compareTwoInner.append(movieYearDisplay);
-                compareTwoInner.append("Average Rating:  " + movieRatingDisplay);
+                compareTwoInner.append(movieRatingDisplay);
                 compareTwoInner.append(whereToWatch);
 
                 // create search bar for additional searches
@@ -369,11 +356,11 @@ function getPosterApi(movieTitleId){
                
 
                 // ELLIOT CODE - create UL for search history 
-                var searchHistoryUL =  $(`<ul id="search-history-list">`);
-                searchHistoryUL.attr("type", "text");
-                searchHistoryUL.attr("class", "list-group");
-                console.log(searchHistoryUL);
-                finalResultsContainer.append(searchHistoryUL);
+                // var searchHistoryUL =  $(`<ul id="search-history-list">`);
+                // searchHistoryUL.attr("type", "text");
+                // searchHistoryUL.addClass("list-group");
+                // console.log("searchHistoryUL");
+                // $("#post-landing").append(searchHistoryUL);
 
                 $("#search-form-again").on("submit", searchEventHandler2);
                 $("#search-button-again").on("click", searchEventHandler2);
@@ -393,11 +380,43 @@ function getPosterApi(movieTitleId){
 
 
 
+// ELLIOT CODE - search history function with local storage set item
+function searchHistory(userInput) {
+
+
+
+    // Push user input history (i.e. book title searched) into a list and append to html <li> tag with id="searchHistory"
+    if (!searchHistoryList.includes(userInput)) {
+        searchHistoryList.push(userInput);
+        console.log(userInput);
+        searchedBookTitles = $(`<li>${userInput}</li>`);
+        searchedBookTitles.addClass("list-group-item");
+        searchedBookTitles.addClass("text-decoration-underline");
+        $("#search-history-list").append(searchedBookTitles);
+    };
+
+    // Save user input (book title) to local storage
+    localStorage.setItem("bookTitleInput", JSON.stringify(searchHistoryList));
+    console.log(searchHistoryList);
+}
 
 
 
 
+// ELLIOT CODE - local storage get item 
+var searchHistoryArray = JSON.parse(localStorage.getItem("bookTitleInput"));
 
+    if (searchHistoryArray !== null) {
+        for (let i = 0; i < 4; i++) {
+            var searchHistoryListItem = searchHistoryArray[i]
+            searchHistoryList.push(searchHistoryListItem);
+            var searchedBookTitles = $(`
+                <li class="list-group-item">${searchHistoryListItem}</li>
+                `);
+            searchedBookTitles.addClass("text-primary");
+            $("#search-history-list").append(searchedBookTitles);
+        }
+    }
 
 
 
