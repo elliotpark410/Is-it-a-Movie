@@ -15,9 +15,7 @@ $("#search-form").parsley();
 // Prevent default for search form
 var searchEventHandler = function (event) {
     event.preventDefault();
-    console.log("IS IT WORKING" + event.target);
     $("#search-input").parsley().validate();
-    // titleListFlex.empty();
     var userInput = $("#search-input").val()
     if (userInput) {
         apiQuery();
@@ -28,20 +26,18 @@ var searchEventHandler = function (event) {
 };
 
 var searchEventHandler2 = function (event) {
-    console.log("RESTART!")
-    // $("#post-landing").empty();
+    
     event.preventDefault();
     $("#final-results-container").remove();
-    console.log("search even handler 2")
-    // titleListFlex.empty();
     var userInput = $("#search-input-again").val()
+    console.log(`This is user input ${userInput}`);
     if (userInput) {
         apiQuery2();
-        // $("#hide-container").removeClass("hide");
         ;
     }
+
     // ELLIOT CODE - run searchHistory function 
-    searchHistory(userInput);
+    // searchHistory(userInput);
 };
 
 // function searchHistory(userInput) {
@@ -151,8 +147,6 @@ function apiQuery() {
 
         })
        
-
-        console.log(userInput);
         
 };
 
@@ -160,8 +154,8 @@ function apiQuery() {
 
 // Make api requests from search bar in results page
 function apiQuery2() {
-    console.log("API QUERY 2")
-    // $(document).append($("#post-landing"));
+
+    
     var userInput = $("#search-input-again").val().trim();
 
     // User validation
@@ -305,6 +299,8 @@ function getPosterApi(movieTitleId){
 
             function displayPoster() {
 
+                console.log("THIS IS OUR" + movieRating);
+
                 // Make variables to hold final results content
                 var finalResultsContainer = $(`<div id="final-results-container">`);
                 var compareContainerOne = $(`<div id="compare-container-one">`);
@@ -362,7 +358,7 @@ function getPosterApi(movieTitleId){
                 var magGlass = $(`<img id="mag-glass">`);
                 magGlass.attr("src", "assets/images/magGLass.png");
                 
-                finalResultsContainer.append(footerContainer);
+                mainContainer.append(footerContainer);
                 footerContainer.append(lilLogo);
                 footerContainer.append(searchAgainContainer);
                 searchAgainContainer.append(searchAgainForm);
@@ -378,10 +374,12 @@ function getPosterApi(movieTitleId){
                 searchHistoryUL.attr("class", "list-group");
                 console.log(searchHistoryUL);
                 finalResultsContainer.append(searchHistoryUL);
+
+                $("#search-form-again").on("submit", searchEventHandler2);
+                $("#search-button-again").on("click", searchEventHandler2);
                
             }
-            $("#search-form-again").on("submit", searchEventHandler2);
-            $("#search-button-again").on("click", searchEventHandler2);
+           
             displayPoster()
     
         });
