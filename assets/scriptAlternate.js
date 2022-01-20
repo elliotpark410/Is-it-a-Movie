@@ -40,25 +40,7 @@ var searchEventHandler2 = function (event) {
         ;
     }
 
-    // ELLIOT CODE - run searchHistory function 
-    // searchHistory(userInput);
 };
-
-// function searchHistory(userInput) {
-//     // Push user input history (i.e. book title searched) into a list and append to html <li> tag with id="searchHistory"
-//     if (!searchHistoryList.includes(userInput)) {
-//         searchHistoryList.push(userInput);
-//         var searchedBookTitles = $(`
-//             <li class="list-group-item">${userInput}</li>
-//             `);
-//         searchedBookTitles.addClass("text-primary");
-//         $("#search-history-list").append(searchedBookTitles);
-//     };
-
-//     // Save user input (book title) to local storage
-//     localStorage.setItem("bookTitleInput", JSON.stringify(searchHistoryList));
-//     console.log(searchHistoryList);
-// }
 
 
 
