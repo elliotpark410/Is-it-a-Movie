@@ -10,30 +10,31 @@ body {
 #logo {
     width: 80%;
 }
-
+/*    commented out by MT for tailwindcss
 #search-tools-container {
     display: flex;
     justify-content: center;
     margin-left: 13%;
     margin-top: -15%;
 }
-
+*/
 #jumbotron {
     margin: auto;
 }
-
+/*    commented out by MT for tailwindcss
 #logo-container {
     display: flex;
     justify-content: center;
     margin-right: 3%;
 }
+*/
 
 #logo{
     padding: 10%;
 }
 
 #search-input {
-    padding: 15px;
+    padding: 20px; /*changed from 15px to 22px to match tailwindcss -MT*/
     border-style: none;
     border-radius: 10px 0px 0px 10px;
     font-style: italic;
@@ -49,9 +50,10 @@ body {
     width: 70%;
 
 }
+/*
 
 #search-button {
-    /* position: absolute; */
+   //  position: absolute; 
     height: 46px;
     width: 55px;
     background-color: rgb(0, 153, 255);
@@ -59,6 +61,7 @@ body {
     border-style: none;
     cursor: pointer;
 }
+commented out MT for tailwindCSS*/
 
 
 #title-list-container-flex {

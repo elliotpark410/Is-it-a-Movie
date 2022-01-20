@@ -8,25 +8,27 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Oswald:wght@200;400;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;1,100;1,200;1,300&family=Roboto+Condensed:ital,wght@0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
-    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <script src="https://cdn.tailwindcss.com"></script> <!--un-commented MT-->
     <link rel="stylesheet" href="assets/landingStyle.css">
     <link rel="stylesheet" href="assets/parsley.css">
     <title>Is it a Movie?</title>
 </head>
 <body>
-<!-- <body class="bg-sky-500/75"> -->
-    <!-- <div id="main-container"> -->
+<body class="bg-sky-500/75"> <!--un-commented MT-->
+     <div id="main-container"> <!--un-commented MT-->
         <div id="main-container">
             <div id="hide-container" data-display="hide">
-                <div id="logo-container">
+                <div class="flex justify-center mr-10" id="logo-container">
+                <!--<div id="logo-container">    commented out by MT for tailwindcss-->
                     <img id="logo" src="assets/images/Logo.png">
                 </div>
-                <div id="search-tools-container">
+                <div class="flex justify-center ml-60 -mt-48" id="search-tools-container">
+                <!--<div id="search-tools-container">   commented out by MT for tailwindcss-->
                     <form id="search-form" data-parsley-validate="">
                         <input id="search-input" required="" type="text" placeholder="Enter book title..."> 
                     </form>
-                    <button id="search-button" value="validate" data-button="search" type="submit"><img id="mag-glass" src="assets/images/magGLass.png"></button>
-                    <!-- TailwindCSS: button class="bg-blue-500 hover: bg-blue-700 text-white font-bold py-2 px-4 rounded"-->
+                    <button class="h-16 px-6 m-0 text-lg text-indigo-100 transition-colors duration-150 bg-sky-500 rounded-lg focus:shadow-outline hover:bg-sky-700" id="search-button" value="validate" data-button="search" type="submit"><img id="mag-glass" src="assets/images/magGLass.png"></button>
+                    <!--<button id="search-button" value="validate" data-button="search" type="submit"><img id="mag-glass" src="assets/images/magGLass.png"></button>    ORIGINAL CODE commented out by MT-->
                 </div>
                 <!-- <ul id="search-history-list" type="text" class="list-group"></ul> -->
             </div>
