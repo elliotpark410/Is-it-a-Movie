@@ -1,4 +1,4 @@
-var movieApiKey = "k_wvl4y5ot";
+
 var mainContainer = $("#main-container");
 var titleListFlex = $(`<div>`).attr("id", "title-list-container-flex");
 var bookCover;
@@ -10,6 +10,18 @@ var movieTitle;
 var poster;
 var movieRating;
 var searchHistoryList = [];
+
+// ELLIOT CODE!!
+var searchedBookTitles;
+var searchHistoryList = [];
+
+
+var home = function() {
+    console.log("Let's go home");
+    $("#hide-container").removeClass("hide");
+    $("#footer-container").remove();
+    $("#final-results-container").remove();
+};
 
 $("#search-form").parsley();
 // Prevent default for search form
@@ -33,30 +45,10 @@ var searchEventHandler2 = function (event) {
     console.log(`This is user input ${userInput}`);
     if (userInput) {
         apiQuery2();
+        $("#footer-container").remove();
         ;
     }
-
-    // ELLIOT CODE - run searchHistory function 
-    // searchHistory(userInput);
 };
-
-// function searchHistory(userInput) {
-//     // Push user input history (i.e. book title searched) into a list and append to html <li> tag with id="searchHistory"
-//     if (!searchHistoryList.includes(userInput)) {
-//         searchHistoryList.push(userInput);
-//         var searchedBookTitles = $(`
-//             <li class="list-group-item">${userInput}</li>
-//             `);
-//         searchedBookTitles.addClass("text-primary");
-//         $("#search-history-list").append(searchedBookTitles);
-//     };
-
-//     // Save user input (book title) to local storage
-//     localStorage.setItem("bookTitleInput", JSON.stringify(searchHistoryList));
-//     console.log(searchHistoryList);
-// }
-
-
 
 
 // ELLIOT CODE - search history function to incorporate local storage
@@ -80,6 +72,11 @@ function searchHistory(userInput) {
 // Make api requests
 function apiQuery() {
 
+    // ELLIOT CODE!!
+    $("#search-history-list").attr("class", "hide");
+    var userInput = $("#search-input").val().trim();
+
+    
     var userInput = $("#search-input").val().trim();
 
     // User validation
@@ -122,7 +119,7 @@ function apiQuery() {
                      var liEl = $(`<li id="title-list-item">`);
                      liEl.text(bookData.items[i].volumeInfo.title);
 
-                    //  Make omdbi api query when user selects book title 
+                    //  Make imdbi api query when user selects book title 
 
                      liEl.on("click", function(event){
                         event.preventDefault();
@@ -220,7 +217,7 @@ function apiQuery2() {
                  titleListFlex.append(titleResponseDiv);
                  var titleResponse = $(`<h2 id="title-response">`).text("Is this what you were looking for?");
                  titleResponseDiv.append(titleResponse);
-                 titleListFlex.attr("class", "hide");
+                //  titleListFlex.attr("class", "hide");
 
         })
        
@@ -234,24 +231,33 @@ function apiQuery2() {
 // MOVIE CHECKKKKKK
 
 // ==================================  set up IMDb API for movie rating API 
-IMDbAPIKey = "k_wvl4y5ot"
+IMDbAPIKey = "k_zj4tz9wx";
 function searchMovie(inputMovie){
    
+    $("#post-landing").attr("class", "hide");
+
     // var inputMovie = $("#movie-input").val().trim();
     var requestIMDbUrl = "https://imdb-api.com/en/API/SearchMovie/" + IMDbAPIKey + "/" + inputMovie;
  
     fetch(requestIMDbUrl)
         .then(function(searchMovieResponse){
-            if (searchMovieResponse.status === 200){
-                //movieRating = movieRatingResponse.status;
-            }
             return searchMovieResponse.json();
         }).then (function(searchMovieData){
-            // console.log("searchMovieData", searchMovieData);
+            console.log("searchMovieData", searchMovieData);
+            console.log(searchMovieData.expression);
 
+            if (searchMovieData.expression !== inputMovie) {
+                console.log("nah nigga");
+
+                return;
+            }
+         
             // var searchMovieTitle = searchMovieData.expression;
-            var movieTitleId = searchMovieData.results[0].id;
             movieTitle = searchMovieData.results[0].title;
+            var movieTitleId = searchMovieData.results[0].id;
+            
+
+      
 
             getRatingApi(movieTitleId);
             getPosterApi(movieTitleId);
@@ -262,8 +268,6 @@ function searchMovie(inputMovie){
 // ==================================  set up IMDb API for movie rating API 
 
 function getRatingApi(movieTitleId){
-
-    console.log("onclick2-testing");
 
     var requestIMDbUrl = "https://imdb-api.com/en/API/Ratings/" + IMDbAPIKey + "/" + movieTitleId;
  
@@ -281,8 +285,6 @@ function getRatingApi(movieTitleId){
 // ==================================  set up IMDb API for movie poster API 
 function getPosterApi(movieTitleId){
 
-
-    //event.preventDefault();
    
     var requestIMDbUrl = "https://imdb-api.com/en/API/Posters/" + IMDbAPIKey + "/" + movieTitleId;
  
@@ -299,7 +301,6 @@ function getPosterApi(movieTitleId){
 
             function displayPoster() {
 
-                console.log("THIS IS OUR" + movieRating);
 
                 // Make variables to hold final results content
                 var finalResultsContainer = $(`<div id="final-results-container">`);
@@ -339,11 +340,11 @@ function getPosterApi(movieTitleId){
                 compareContainerTwo.append(compareTwoInner);
                 movieTitleDisplay.text(movieTitle);
                 movieYearDisplay.text(movieYear);
-                movieRatingDisplay.text(movieRating);
+                movieRatingDisplay.text("Average Rating: " + movieRating);
                 whereToWatch.text("Where to Watch");
                 compareTwoInner.append(movieTitleDisplay);
                 compareTwoInner.append(movieYearDisplay);
-                compareTwoInner.append("Average Rating:  " + movieRatingDisplay);
+                compareTwoInner.append(movieRatingDisplay);
                 compareTwoInner.append(whereToWatch);
 
                 // create search bar for additional searches
@@ -375,8 +376,10 @@ function getPosterApi(movieTitleId){
                 console.log(searchHistoryUL);
                 finalResultsContainer.append(searchHistoryUL);
 
+                titleListFlex.empty();
                 $("#search-form-again").on("submit", searchEventHandler2);
                 $("#search-button-again").on("click", searchEventHandler2);
+                $("#lil-logo").on("click", home);
                
             }
            
@@ -393,18 +396,47 @@ function getPosterApi(movieTitleId){
 
 
 
-
-
-
-
-
-
-
-
 // Event listeners for search form submission and search button
 
 $("#search-form").on("submit", searchEventHandler);
 $("#search-button").on("click", searchEventHandler);
+
+
+
+// ELLIOT CODE - search history function with local storage set item
+function searchHistory(userInput) {
+    // Push user input history (i.e. book title searched) into a list and append to html <li> tag with id="searchHistory"
+    if (!searchHistoryList.includes(userInput)) {
+        searchHistoryList.push(userInput);
+        console.log(userInput);
+        searchedBookTitles = $(`<li>${userInput}</li>`);
+        searchedBookTitles.addClass("list-group-item");
+        searchedBookTitles.addClass("text-decoration-underline");
+        $("#search-history-list").append(searchedBookTitles);
+    };
+
+    // Save user input (book title) to local storage
+    localStorage.setItem("bookTitleInput", JSON.stringify(searchHistoryList));
+    console.log(searchHistoryList);
+}
+
+
+// ELLIOT CODE - local storage get item 
+var searchHistoryArray = JSON.parse(localStorage.getItem("bookTitleInput"));
+
+    if (searchHistoryArray !== null) {
+        for (let i = 0; i < 4; i++) {
+            var searchHistoryListItem = searchHistoryArray[i]
+            searchHistoryList.push(searchHistoryListItem);
+            var searchedBookTitles = $(`
+                <li class="list-group-item">${searchHistoryListItem}</li>
+                `);
+            searchedBookTitles.addClass("text-primary");
+            $("#search-history-list").append(searchedBookTitles);
+        }
+    }
+
+
 
 
 
