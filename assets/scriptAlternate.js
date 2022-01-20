@@ -246,11 +246,11 @@ function searchMovie(inputMovie){
             console.log("searchMovieData", searchMovieData);
             console.log(searchMovieData.expression);
 
-            if (searchMovieData.expression !== inputMovie) {
-                console.log("nah nigga");
+            // if (searchMovieData.expression !== inputMovie) {
+               
 
-                return;
-            }
+            //     return;
+            // }
          
             // var searchMovieTitle = searchMovieData.expression;
             movieTitle = searchMovieData.results[0].title;

@@ -39,7 +39,7 @@ As a user, I want to be able to search for the information without going into di
 
 As a user, I want to compare ratings of the book and movie to know which one is better.  
 
-![alt text](./assets/images/application.gif)
+![alt text](https://media.giphy.com/media/ZEq60f6KNRO4ny5ZmV/giphy-downsized-large.gif)
 
 
 

@@ -129,7 +129,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* margin-top: 20%; */
+    margin-top: 20%;
 }
 
 #compare-container-one {
