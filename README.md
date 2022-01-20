@@ -30,6 +30,9 @@ After the search button is clicked, a simple confirmation page will be displayed
 
 A local storage feature is also in place so that users can see their search history when using this application.
 
+<br>
+
+
 
 ## User Stories
 
@@ -39,14 +42,38 @@ As a user, I want to be able to search for the information without going into di
 
 As a user, I want to compare ratings of the book and movie to know which one is better.  
 
-![alt text](https://media.giphy.com/media/ZEq60f6KNRO4ny5ZmV/giphy-downsized-large.gif)
+<br>
 
+### Accessing APIs
 
+We utilized the fetch method to access two api's.
+
+```
+fetch(booksRequestUrl)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (bookData) {
+            console.log(bookData);
+```
+
+<br>
 
 ## Design Layout
 
-![alt text](./assets/images/landing-page.png)
+![alt text](./assets/images/layout.png)
 
+<br>
+
+## Functionality
+
+This is a demonstration of parsley.js assisting in user input validation.
+![A preview of the planner's functionality](https://media.giphy.com/media/166yirPLymxf7j9RPM/giphy.gif)
+
+Here we can see the whole applications functionality
+![A preview of the planner's functionality](https://media.giphy.com/media/AVVnl4VYusrsUVsDVY/giphy.gif)
+
+<br>
 
 ## CSS Framework Used
 
