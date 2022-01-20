@@ -18,8 +18,8 @@ Movie adaptations are getting more popular in the 21st century when readers nowa
 
 ## Deployed Link
 
-* [Deployed Link to Live Site](https://elliotpark410.github.io/Books-with-Movies/)
-* [Link to Github](https://github.com/elliotpark410/Books-with-Movies)
+* [Deployed Link to Live Site](https://scottybuoy.github.io/Is-it-a-Movie/)
+* [Link to Github](https://github.com/scottybuoy/Is-it-a-Movie.git)
 
 
 ## Getting Started
