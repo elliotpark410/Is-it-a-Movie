@@ -9,6 +9,8 @@ var bookRating;
 var movieTitle;
 var poster;
 var movieRating;
+
+// ELLIOT CODE!!
 var searchedBookTitles;
 var searchHistoryList = [];
 
@@ -17,14 +19,13 @@ $("#search-form").parsley();
 // Prevent default for search form
 var searchEventHandler = function (event) {
     event.preventDefault();
-    // $("#search-history-list").empty();
     $("#search-input").parsley().validate();
     var userInput = $("#search-input").val()
     if (userInput) {
         apiQuery();
         $("#hide-container").addClass("hide");
     }
-    // ELLIOT CODE - run searchHistory function 
+    // ELLIOT CODE!! - run searchHistory function 
     searchHistory(userInput);
 };
 
@@ -67,6 +68,7 @@ var searchEventHandler2 = function (event) {
 
 // Make api requests
 function apiQuery() {
+    // ELLIOT CODE!!
     $("#search-history-list").attr("class", "hide");
     var userInput = $("#search-input").val().trim();
 
@@ -355,13 +357,6 @@ function getPosterApi(movieTitleId){
 
                
 
-                // ELLIOT CODE - create UL for search history 
-                // var searchHistoryUL =  $(`<ul id="search-history-list">`);
-                // searchHistoryUL.attr("type", "text");
-                // searchHistoryUL.addClass("list-group");
-                // console.log("searchHistoryUL");
-                // $("#post-landing").append(searchHistoryUL);
-
                 $("#search-form-again").on("submit", searchEventHandler2);
                 $("#search-button-again").on("click", searchEventHandler2);
                
@@ -382,9 +377,6 @@ function getPosterApi(movieTitleId){
 
 // ELLIOT CODE - search history function with local storage set item
 function searchHistory(userInput) {
-
-
-
     // Push user input history (i.e. book title searched) into a list and append to html <li> tag with id="searchHistory"
     if (!searchHistoryList.includes(userInput)) {
         searchHistoryList.push(userInput);
@@ -399,8 +391,6 @@ function searchHistory(userInput) {
     localStorage.setItem("bookTitleInput", JSON.stringify(searchHistoryList));
     console.log(searchHistoryList);
 }
-
-
 
 
 // ELLIOT CODE - local storage get item 
